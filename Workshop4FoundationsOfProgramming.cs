@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
@@ -15,7 +15,7 @@ namespace LabWeek4
                 case 1:
                     task1();
                     break;
-                
+
                 case 2:
                     task2();
                     break;
@@ -27,11 +27,11 @@ namespace LabWeek4
                 case 4:
                     task4();
                     break;
-                
+
                 case 5:
                     task5();
                     break;
-                
+
                 case 6:
                     task6();
                     break;
@@ -89,7 +89,7 @@ namespace LabWeek4
 
             Console.Write("Are you a student? (true/false): ");
             string studentStr = Console.ReadLine();
-            if(studentStr == "true")
+            if (studentStr == "true")
             {
                 student = true;
             }
@@ -121,7 +121,7 @@ namespace LabWeek4
             Console.Write("Enter score: ");
             int score = Convert.ToInt32(Console.ReadLine());
 
-            if(score > 100)
+            if (score > 100)
             {
                 task4();
             }
@@ -140,7 +140,7 @@ namespace LabWeek4
             switch (option)
             {
                 case 1:
-                    strOption = "Tea"; 
+                    strOption = "Tea";
                     break;
                 case 2:
                     strOption = "Coffee";
@@ -165,11 +165,11 @@ namespace LabWeek4
             {
                 decimal pricePerWidget;
 
-                if(quantity < 50)
+                if (quantity < 50)
                 {
                     pricePerWidget = 5.0m;
                 }
-                else if(quantity < 80)
+                else if (quantity < 80)
                 {
                     pricePerWidget = 4.0m;
                 }
@@ -186,7 +186,7 @@ namespace LabWeek4
 
         static void task7()
         {
-            bool repeat = false;
+            bool repeat;
             do
             {
                 Console.Write("Widget Quantity: ");
@@ -212,26 +212,33 @@ namespace LabWeek4
                 Console.WriteLine($"Total Price: GBP {totalPrice:F2}");
                 Console.Write("Another Quote? (y to continue, q to quit): ");
                 string strRepeat = Console.ReadLine();
-                if(strRepeat == "y")
-                {
-                    repeat = true;
-                }
-                else
-                {
-                    repeat = false;
-                }
+                repeat = strRepeat == "y";
 
-            } while (repeat = true);
+            } while (repeat);
         }
 
         static void task8()
         {
             Console.Write("Enter a string: ");
-            string str = Console.ReadLine();
+            string str = Console.ReadLine() ?? "";
 
-            string clean = string.Concat(str.Where(c => !char.IsWhiteSpace);
+            string noSpaces = RemoveWhitespace(str);
 
-            Console.WriteLine($"There are {clean.Count()} non-space characters.");
+            Console.WriteLine($"Without spaces: {noSpaces}");
+            Console.WriteLine($"There are {noSpaces.Length} non-space characters.");
+        }
+
+        static string RemoveWhitespace(string text)
+        {
+            string result = "";
+            foreach (char c in text)
+            {
+                if (!char.IsWhiteSpace(c))
+                {
+                    result += c;
+                }
+            }
+            return result;
         }
     }
 }
